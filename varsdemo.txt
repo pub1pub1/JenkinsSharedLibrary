@@ -1,4 +1,7 @@
 @Library('my-shared-lib')
+import varsDemo
+
+def varsDemo = new varsDemo()
 
 varsDemo.stage_checkout();
 varsDemo.stage_clean();
