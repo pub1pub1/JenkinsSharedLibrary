@@ -13,7 +13,6 @@ def configTools() {
 
 def checkout() {
    node {
-    mvnHome = tool 'maven_default'
 		stage('Checkout') {
       git url: 'https://github.com/pub1pub1/SimpleGreetingMaven.git'
     }
@@ -23,6 +22,7 @@ def checkout() {
 def mvn_install() {
 	node {
 		stage('Install') {
+      mvnHome = tool 'maven_default'
       if(isUnix()) {
         sh '"$mvnHome/bin/mvn" install'
       } else {
@@ -35,6 +35,7 @@ def mvn_install() {
 def mvn_clean() {
 	node {
 		stage('Clean') {
+      mvnHome = tool 'maven_default'
       if(isUnix()) {
         sh '"$mvnHome/bin/mvn" clean'
       } else {
@@ -47,6 +48,7 @@ def mvn_clean() {
 def mvn_verify() {
 	node {
 		stage('Verify') {
+      mvnHome = tool 'maven_default'
       if(isUnix()) {
         sh '"$mvnHome/bin/mvn" verify'
       } else {
