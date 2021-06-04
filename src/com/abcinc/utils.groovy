@@ -5,11 +5,13 @@ def mvnHome = ''
 def configTools() {
   node {
    mvnHome = tool 'maven_default'
+   echo $mvnHome
   }    
 }
 
 def checkout() {
    node {
+    mvnHome = tool 'maven_default'
 		stage('Checkout') {
       git url: 'https://github.com/pub1pub1/SimpleGreetingMaven.git'
     }
@@ -18,6 +20,7 @@ def checkout() {
 
 def mvn_install() {
 	node {
+    mvnHome = tool 'maven_default'
 		stage('Install') {
       if(isUnix()) {
         sh '"$mvnHome/bin/mvn" install'
@@ -30,6 +33,7 @@ def mvn_install() {
 
 def mvn_clean() {
 	node {
+    mvnHome = tool 'maven_default'
 		stage('Clean') {
       if(isUnix()) {
         sh '"$mvnHome/bin/mvn" clean'
@@ -42,6 +46,7 @@ def mvn_clean() {
 
 def mvn_verify() {
 	node {
+    mvnHome = tool 'maven_default'
 		stage('Verify') {
       if(isUnix()) {
         sh '"$mvnHome/bin/mvn" verify'
@@ -53,6 +58,7 @@ def mvn_verify() {
 }
 
 def archive_reports() {
+  mvnHome = tool 'maven_default'
 	node {
 		stage('Archive Reports') {
       step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
@@ -61,6 +67,7 @@ def archive_reports() {
 }
 
 def user_acceptance(job) {
+  mvnHome = tool 'maven_default'
 	node {
 		stage('User Acceptance Test') {
 		
