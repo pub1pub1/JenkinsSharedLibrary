@@ -3,8 +3,10 @@ package com.abcinc;
 mvnHome = null
 
 def configTools() {
-  mvnHome = tool 'maven_default'
-  return mvnHome  
+  node {
+    mvnHome = tool 'maven_default'
+    return mvnHome  
+  }
 }
 
 def checkout() {
