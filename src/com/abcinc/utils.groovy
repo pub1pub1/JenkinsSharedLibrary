@@ -53,21 +53,18 @@ def archive_reports() {
 
 def user_acceptance(job) {
 	node {
-		stage 'User Acceptance Test'
+		stage('User Acceptance Test') {
 		
 		def response= input message: 'Is this build good to go?',
 		 parameters: [choice(choices: 'Yes\nNo', 
 		 description: '', name: 'Pass')]
 
 		if(response=="Yes") {
-		 node {
 		  stage('Deploy') {
-        bat "xcopy \"C:\\Program Files (x86)\\Jenkins\\workspace\\$job\\target\\SimpleGreeting*.jar\" C:\\workspace\\dev\\ /y"
-      }
+        // bat "xcopy \"C:\\Program Files (x86)\\Jenkins\\workspace\\$job\\target\\SimpleGreeting*.jar\" C:\\workspace\\dev\\ /y"
+        echo 'Deployed!'
 		 }	
 		}	
+   }
 	}
 }
-
-
-
