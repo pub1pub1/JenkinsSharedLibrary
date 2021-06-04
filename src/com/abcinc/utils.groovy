@@ -2,36 +2,52 @@ package com.abcinc;
 
 def checkout() {
    node {
-		stage 'Checkout'
-		git url: 'https://github.com/pub1pub1/SimpleGreetingMaven.git'
+		stage('Checkout') {
+      git url: 'https://github.com/pub1pub1/SimpleGreetingMaven.git'
+    }
 	}
 }
 
 def mvn_install() {
 	node {
-		stage 'Install'
-		bat 'mvn install'
+		stage('Install') {
+      if(isUnix()) {
+        sh 'mvn install'
+      } else {
+        bat 'mvn install'
+      }
+    }
 	}
 }
 
 def mvn_clean() {
 	node {
-		stage 'Clean'
-		bat 'mvn clean'
+		stage('Clean') {
+      if(isUnix()) {
+        sh 'mvn clean'
+      } else {
+        bat 'mvn clean'
+      }
+    }
 	}
 }
 
 def mvn_verify() {
 	node {
-		stage 'Verify'
-		bat 'mvn verify'
+		stage('Verify') {
+      if(isUnix()) {
+        sh 'mvn verify'
+      } else {
+        bat 'mvn verify'
+      }
 	}
 }
 
 def archive_reports() {
 	node {
-		stage 'Archive Reports'
-		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+		stage('Archive Reports') {
+      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+    }
 	}
 }
 
