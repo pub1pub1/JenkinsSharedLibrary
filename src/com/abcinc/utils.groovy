@@ -12,7 +12,6 @@ def mvn_install() {
 	node {
 		stage('Package') {
       mvnHome = tool 'maven_default'
-      echo $mvnHome
       echo mvnHome
       withEnv(["MVN_HOME=$mvnHome"]) {
         echo $MVN_HOME
@@ -26,7 +25,6 @@ def mvn_clean() {
 	node {
 		stage('Package') {
       mvnHome = tool 'maven_default'
-      echo $mvnHome
       echo mvnHome
       withEnv(["MVN_HOME=$mvnHome"]) {
         echo $MVN_HOME
