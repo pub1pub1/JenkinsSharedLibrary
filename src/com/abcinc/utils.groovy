@@ -3,44 +3,31 @@ package com.abcinc;
 def checkout() {
    node {
 		stage('Checkout') {
-      git url: 'https://github.com/pub1pub1/SimpleGreetingMaven.git'
+      echo 'checkout'
     }
 	}
 }
 
-def mvn_install() {
+def package() {
 	node {
 		stage('Package') {
-      mvnHome = tool 'maven_default'
-      echo mvnHome
-      withEnv(["MVN_HOME=$mvnHome"]) {
-        echo $MVN_HOME
-          sh '"$mvnHome/bin/mvn" package'
-      }
+      echo 'package'
     }
 	}
 }
 
 def mvn_clean() {
 	node {
-		stage('Package') {
-      mvnHome = tool 'maven_default'
-      echo mvnHome
-      withEnv(["MVN_HOME=$mvnHome"]) {
-        echo $MVN_HOME
-          sh '"$mvnHome/bin/mvn" clean'
-      }
+		stage('Clean') {
+      echo 'clean'
     }
 	}
 }
 
-def mvn_verify() {
+def mvn_sit() {
 	node {
-		stage('Verify') {
-      mvnHome = tool 'maven_default'
-      withEnv(["MVN_HOME=$mvnHome"]) {
-          sh '"$mvnHome/bin/mvn" verify'
-      }
+		stage('SIT') {
+      echo 'SIT'
     }
 	}
 }
@@ -48,14 +35,14 @@ def mvn_verify() {
 def archive_reports() {
 	node {
 		stage('Archive Reports') {
-      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+      echo 'archive reports'
     }
 	}
 }
 
 def user_acceptance(job) {
 	node {
-		stage('User Acceptance Test') {
+		stage('UAT') {
 		
 		def response= input message: 'Is this build good to go?',
 		 parameters: [choice(choices: 'Yes\nNo', 
@@ -63,7 +50,6 @@ def user_acceptance(job) {
 
 		if(response=="Yes") {
 		  stage('Deploy') {
-        // bat "xcopy \"C:\\Program Files (x86)\\Jenkins\\workspace\\$job\\target\\SimpleGreeting*.jar\" C:\\workspace\\dev\\ /y"
         echo 'Deployed!'
 		 }	
 		}	
