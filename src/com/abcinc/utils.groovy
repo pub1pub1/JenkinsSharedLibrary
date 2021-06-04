@@ -10,14 +10,13 @@ def checkout() {
 
 def mvn_install() {
 	node {
-		stage('Install') {
+		stage('Package') {
       mvnHome = tool 'maven_default'
+      echo $mvnHome
+      echo mvnHome
       withEnv(["MVN_HOME=$mvnHome"]) {
-        if(isUnix()) {
-          sh '"$mvnHome/bin/mvn" install'
-        } else {
-          bat '"$mvnHome/bin/mvn" install'
-        }
+        echo $MVN_HOME
+          sh '"$mvnHome/bin/mvn" package'
       }
     }
 	}
@@ -28,11 +27,7 @@ def mvn_clean() {
 		stage('Clean') {
       mvnHome = tool 'maven_default'
       withEnv(["MVN_HOME=$mvnHome"]) {
-        if(isUnix()) {
           sh '"$mvnHome/bin/mvn" clean'
-        } else {
-          bat '"$mvnHome/bin/mvn" clean'
-        }
       }
     }
 	}
@@ -43,11 +38,7 @@ def mvn_verify() {
 		stage('Verify') {
       mvnHome = tool 'maven_default'
       withEnv(["MVN_HOME=$mvnHome"]) {
-        if(isUnix()) {
           sh '"$mvnHome/bin/mvn" verify'
-        } else {
-          bat '"$mvnHome/bin/mvn" verify'
-        }
       }
     }
 	}
