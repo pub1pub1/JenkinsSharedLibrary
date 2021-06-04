@@ -1,5 +1,12 @@
 package com.abcinc;
 
+mvnHome = null
+
+def configTools() {
+  mvnHome = tool 'maven_default'
+  return mvnHome  
+}
+
 def checkout() {
    node {
 		stage('Checkout') {
@@ -12,9 +19,9 @@ def mvn_install() {
 	node {
 		stage('Install') {
       if(isUnix()) {
-        sh 'mvn install'
+        sh '"$mvnHome/bin/mvn" install'
       } else {
-        bat 'mvn install'
+        bat '"$mvnHome/bin/mvn" install'
       }
     }
 	}
@@ -24,9 +31,9 @@ def mvn_clean() {
 	node {
 		stage('Clean') {
       if(isUnix()) {
-        sh 'mvn clean'
+        sh '"$mvnHome/bin/mvn" clean'
       } else {
-        bat 'mvn clean'
+        bat '"$mvnHome/bin/mvn" clean'
       }
     }
 	}
@@ -36,9 +43,9 @@ def mvn_verify() {
 	node {
 		stage('Verify') {
       if(isUnix()) {
-        sh 'mvn verify'
+        sh '"$mvnHome/bin/mvn" verify'
       } else {
-        bat 'mvn verify'
+        bat '"$mvnHome/bin/mvn" verify'
       }
     }
 	}
