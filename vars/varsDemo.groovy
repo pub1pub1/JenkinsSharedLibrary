@@ -1,6 +1,6 @@
 package com.abcinc;
 
-def checkout() {
+def stage_checkout() {
    node {
 		stage('Checkout') {
       echo 'checkout'
@@ -8,7 +8,7 @@ def checkout() {
 	}
 }
 
-def mvn_package() {
+def stage_package() {
 	node {
 		stage('Package') {
       echo 'package'
@@ -16,7 +16,7 @@ def mvn_package() {
 	}
 }
 
-def mvn_clean() {
+def stage_clean() {
 	node {
 		stage('Clean') {
       echo 'clean'
@@ -24,7 +24,7 @@ def mvn_clean() {
 	}
 }
 
-def mvn_sit() {
+def stage_sit() {
 	node {
 		stage('SIT') {
       echo 'SIT'
@@ -32,7 +32,7 @@ def mvn_sit() {
 	}
 }
 
-def archive_reports() {
+def stage_archive_reports() {
 	node {
 		stage('Archive Reports') {
       echo 'archive reports'
@@ -40,7 +40,7 @@ def archive_reports() {
 	}
 }
 
-def user_acceptance(job) {
+def stage_uat(job) {
 	node {
 		stage('UAT') {
 		

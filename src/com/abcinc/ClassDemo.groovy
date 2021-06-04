@@ -1,61 +1,47 @@
 package com.abcinc;
 
-class ClassDemo {
+class ClassDemo implements Serializable {
+  private script
 
-public checkout() {
-   node {
-		stage('Checkout') {
-      echo 'checkout'
+  ClassDemo(Script script) {
+    this.script = script
+  }
+
+  public stage_checkout() {
+    script.node() {
+    script.stage('Checkout') {
+      script.git ''
+      script.echo 'Checkout done'
     }
-	}
-}
+  }
 
-public mvn_package() {
-	node {
-		stage('Package') {
-      echo 'package'
-    }
-	}
-}
+  // public stage_package() {
+  //   script.stage('Package') {
+  //     script.stage_package()
+  //   }
+  // }
 
-public mvn_clean() {
-	node {
-		stage('Clean') {
-      echo 'clean'
-    }
-	}
-}
+  // public stage_clean() {
+  //   script.stage('Clean') {
+  //     script.stage_clean()
+  //   }
+  // }
 
-public mvn_sit() {
-	node {
-		stage('SIT') {
-      echo 'SIT'
-    }
-	}
-}
+  // public stage_sit() {
+  //   script.stage('SIT') {
+  //     script.stage_sit()
+  //   }
+  // }
 
-public archive_reports() {
-	node {
-		stage('Archive Reports') {
-      echo 'archive reports'
-    }
-	}
-}
+  // public stage_archive_reports() {
+  //   script.stage('Archive Reports') {
+  //     script.stage_archive_reports()
+  //   }
+  // }
 
-public user_acceptance(job) {
-	node {
-		stage('UAT') {
-		
-		public response= input message: 'Is this build good to go?',
-		 parameters: [choice(choices: 'Yes\nNo', 
-		 description: '', name: 'Pass')]
-
-		if(response=="Yes") {
-		  stage('Deploy') {
-        echo 'Deployed!'
-		 }	
-		}	
-   }
-	}
-}
+  // public stage_uat(job) {
+  //   script.stage('UAT') {
+  //     script.stage_uat()
+  //   }
+  // }
 }
