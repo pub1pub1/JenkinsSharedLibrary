@@ -24,9 +24,12 @@ def mvn_install() {
 
 def mvn_clean() {
 	node {
-		stage('Clean') {
+		stage('Package') {
       mvnHome = tool 'maven_default'
+      echo $mvnHome
+      echo mvnHome
       withEnv(["MVN_HOME=$mvnHome"]) {
+        echo $MVN_HOME
           sh '"$mvnHome/bin/mvn" clean'
       }
     }
