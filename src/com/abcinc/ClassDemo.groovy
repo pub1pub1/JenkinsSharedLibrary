@@ -7,7 +7,7 @@ class ClassDemo implements Serializable {
     this.script = script
   }
 
-  public checkout() {
+  public stage_checkout() {
     script.node() {
     script.stage('Checkout') {
       script.git 'https://github.com/pub1pub1/SimpleGreetingMaven.git'

@@ -1,0 +1,8 @@
+@Library('my-shared-lib')
+
+varsDemo.stage_checkout();
+varsDemo.stage_clean();
+varsDemo.stage_package();
+varsDemo.stage_archive_reports();
+varsDemo.stage_sit();
+varsDemo.stage_uat("ABCInc");

@@ -1,0 +1,11 @@
+@Library('my-shared-lib')
+import com.abcinc.ClassDemo;
+
+def u = new ClassDemo(this);
+
+u.checkout();
+u.stage_clean();
+u.stage_package();
+u.stage_archive_reports();
+u.stage_sit();
+u.stage_uat("ABCInc");
