@@ -1,16 +1,5 @@
 package com.abcinc;
 
-def mvnHome = ''
-
-def configTools() {
-  node {
-    stage('Preparation') {
-     mvnHome = tool 'maven_default'
-     echo mvnHome
-    }
-  }    
-}
-
 def checkout() {
    node {
 		stage('Checkout') {
@@ -23,10 +12,12 @@ def mvn_install() {
 	node {
 		stage('Install') {
       mvnHome = tool 'maven_default'
-      if(isUnix()) {
-        sh '"$mvnHome/bin/mvn" install'
-      } else {
-        bat '"$mvnHome/bin/mvn" install'
+      withEnv(["MVN_HOME=$mvnHome"]) {
+        if(isUnix()) {
+          sh '"$mvnHome/bin/mvn" install'
+        } else {
+          bat '"$mvnHome/bin/mvn" install'
+        }
       }
     }
 	}
@@ -36,10 +27,12 @@ def mvn_clean() {
 	node {
 		stage('Clean') {
       mvnHome = tool 'maven_default'
-      if(isUnix()) {
-        sh '"$mvnHome/bin/mvn" clean'
-      } else {
-        bat '"$mvnHome/bin/mvn" clean'
+      withEnv(["MVN_HOME=$mvnHome"]) {
+        if(isUnix()) {
+          sh '"$mvnHome/bin/mvn" clean'
+        } else {
+          bat '"$mvnHome/bin/mvn" clean'
+        }
       }
     }
 	}
@@ -49,10 +42,12 @@ def mvn_verify() {
 	node {
 		stage('Verify') {
       mvnHome = tool 'maven_default'
-      if(isUnix()) {
-        sh '"$mvnHome/bin/mvn" verify'
-      } else {
-        bat '"$mvnHome/bin/mvn" verify'
+      withEnv(["MVN_HOME=$mvnHome"]) {
+        if(isUnix()) {
+          sh '"$mvnHome/bin/mvn" verify'
+        } else {
+          bat '"$mvnHome/bin/mvn" verify'
+        }
       }
     }
 	}
