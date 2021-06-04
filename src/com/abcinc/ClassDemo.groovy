@@ -7,12 +7,13 @@ class ClassDemo implements Serializable {
     this.script = script
   }
 
-  public stage_checkout() {
+  public checkout() {
     script.node() {
     script.stage('Checkout') {
       script.git ''
       script.echo 'Checkout done'
     }
+  }
   }
 
   // public stage_package() {
