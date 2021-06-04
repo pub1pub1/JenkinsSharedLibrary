@@ -42,17 +42,7 @@ class ClassDemo implements Serializable {
 
   public stage_uat(job) {
     script.stage('UAT') {
-    
-    def response= script.input message: 'Is this build good to go?',
-         parameters: [choice(choices: 'Yes\nNo', 
-         description: '', name: 'Pass')]
-
-    if(response=="Yes") {
-        script.stage('Deploy') {
-        // bat "xcopy \"C:\\Program Files (x86)\\Jenkins\\workspace\\$job\\target\\SimpleGreeting*.jar\" C:\\workspace\\dev\\ /y"
-          script.echo 'Deployed!'
-         }    
+      script.echo 'UAT'
     }
   }
-}
 }
