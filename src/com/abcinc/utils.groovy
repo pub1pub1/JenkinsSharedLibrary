@@ -61,9 +61,9 @@ def user_acceptance(job) {
 
 		if(response=="Yes") {
 		 node {
-		  stage 'Deploy'
-
-		  bat "xcopy \"C:\\Program Files (x86)\\Jenkins\\workspace\\$job\\target\\SimpleGreeting*.jar\" C:\\workspace\\dev\\ /y"
+		  stage('Deploy') {
+        bat "xcopy \"C:\\Program Files (x86)\\Jenkins\\workspace\\$job\\target\\SimpleGreeting*.jar\" C:\\workspace\\dev\\ /y"
+      }
 		 }	
 		}	
 	}
