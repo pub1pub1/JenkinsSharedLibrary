@@ -1,5 +1,13 @@
 package com.abcinc;
 
+def mvnHome = ''
+
+def confgTools() {
+  node {
+   mvnHome = tool 'maven_default'
+  }    
+}
+
 def checkout() {
    node {
 		stage('Checkout') {
