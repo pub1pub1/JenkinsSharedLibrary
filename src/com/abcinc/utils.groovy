@@ -8,7 +8,7 @@ def checkout() {
 	}
 }
 
-def package() {
+def mvn_package() {
 	node {
 		stage('Package') {
       echo 'package'
