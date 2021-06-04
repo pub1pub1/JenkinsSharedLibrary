@@ -2,7 +2,7 @@ package com.abcinc;
 
 def mvnHome = ''
 
-def confgTools() {
+def configTools() {
   node {
    mvnHome = tool 'maven_default'
   }    
