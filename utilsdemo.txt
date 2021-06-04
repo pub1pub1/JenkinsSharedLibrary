@@ -1,0 +1,11 @@
+@Library('my-shared-lib')
+import com.abcinc.utils
+
+def u = new Utils();
+
+u.stage_checkout();
+u.stage_clean();
+u.stage_package();
+u.stage_archive_reports();
+u.stage_sit();
+u.stage_uat("ABCInc");

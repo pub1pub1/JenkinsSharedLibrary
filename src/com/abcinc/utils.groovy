@@ -1,3 +1,5 @@
+package com.abcinc;
+
 def stage_checkout() {
    node {
         stage('Checkout') {
