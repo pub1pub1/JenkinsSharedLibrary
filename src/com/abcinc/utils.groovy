@@ -40,6 +40,7 @@ def mvn_verify() {
       } else {
         bat 'mvn verify'
       }
+    }
 	}
 }
 
