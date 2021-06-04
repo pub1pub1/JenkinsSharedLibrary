@@ -1,14 +1,5 @@
 package com.abcinc;
 
-def mvnHome = ''
-
-def configTools() {
-  node {
-   mvnHome = tool 'maven_default'
-   echo $mvnHome
-  }    
-}
-
 def checkout() {
    node {
     mvnHome = tool 'maven_default'
